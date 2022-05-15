@@ -8,3 +8,9 @@ services:
       - '8080:80'
     volumes:
       - ./:/var/www/html
+  php:
+    build:
+      context: .
+      dockerfile: ./php/php.Dockerfile
+    volumes:
+      - ./:/var/www/html
