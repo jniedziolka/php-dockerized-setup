@@ -1,5 +1,6 @@
 version: '3.9'
 services:
+
   server:
     build:
       context: .
@@ -8,9 +9,25 @@ services:
       - '8080:80'
     volumes:
       - ./:/var/www/html
+
   php:
     build:
       context: .
       dockerfile: ./php/php.Dockerfile
     volumes:
       - ./:/var/www/html
+
+  db:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+    ports:
+      - '3306:3306'
+    volumes:
+      - my-db:/var/lib/mysql
+
+volumes:
+  my-db:
